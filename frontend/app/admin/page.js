@@ -12,13 +12,13 @@ export default function AdminPage() {
   useEffect(() => { fetchEvents(); }, []);
 
   const fetchEvents = () => {
-    fetch('http://127.0.0.1:8000/admin/events')
+    fetch('https://seat-booking-system-production-48c9.up.railway.app/admin/events')
       .then(res => res.json())
       .then(setEvents);
   };
 
   const createEvent = async () => {
-    const res = await fetch('http://127.0.0.1:8000/admin/events', {
+    const res = await fetch('https://seat-booking-system-production-48c9.up.railway.app/admin/events', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...form, num_rows: parseInt(form.num_rows), num_cols: parseInt(form.num_cols) })
@@ -28,7 +28,7 @@ export default function AdminPage() {
     fetchEvents();
   };
     const toggleBlock = async (seat) => {
-    await fetch('http://127.0.0.1:8000/admin/seats/block', {
+    await fetch('https://seat-booking-system-production-48c9.up.railway.app/admin/seats/block', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ seat_id: seat.id, is_blocked: !seat.is_blocked })
@@ -38,8 +38,8 @@ export default function AdminPage() {
 
   const fetchDashboard = async (eventId) => {
   const [dashRes, seatsRes] = await Promise.all([
-    fetch(`http://127.0.0.1:8000/admin/events/${eventId}/dashboard`),
-    fetch(`http://127.0.0.1:8000/booking/events/${eventId}/seats`)
+    fetch(`https://seat-booking-system-production-48c9.up.railway.app/admin/events/${eventId}/dashboard`),
+    fetch(`https://seat-booking-system-production-48c9.up.railway.app/booking/events/${eventId}/seats`)
   ]);
   const dashData = await dashRes.json();
   const seatsData = await seatsRes.json();

@@ -20,8 +20,8 @@ export default function EventPage() {
   const fetchData = async () => {
     setLoading(true);
     const [seatsRes, eventRes] = await Promise.all([
-      fetch(`http://127.0.0.1:8000/booking/events/${id}/seats`),
-      fetch(`http://127.0.0.1:8000/admin/events`)
+      fetch(`https://seat-booking-system-production-48c9.up.railway.app/booking/events/${id}/seats`),
+      fetch(`https://seat-booking-system-production-48c9.up.railway.app/admin/events`)
     ]);
     const seatsData = await seatsRes.json();
     const eventsData = await eventRes.json();
@@ -52,7 +52,7 @@ export default function EventPage() {
     setBooking(true);
     setMessage('');
     try {
-      const res = await fetch('http://127.0.0.1:8000/booking/book', {
+      const res = await fetch('https://seat-booking-system-production-48c9.up.railway.app/booking/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

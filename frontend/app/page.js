@@ -7,7 +7,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/admin/events')
+    fetch('https://seat-booking-system-production-48c9.up.railway.app/admin/events')
       .then(res => res.json())
       .then(data => { setEvents(data); setLoading(false); });
   }, []);
